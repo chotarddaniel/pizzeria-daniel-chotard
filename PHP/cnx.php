@@ -8,7 +8,7 @@ $login='root';
 $motDePasse='';
 // Connexion au serveur MySQL
 try{
-    $cnx = new PDO($dsn, $login, $motDePasse,
+    $bdd = new PDO($dsn, $login, $motDePasse,
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 }
