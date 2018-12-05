@@ -9,12 +9,13 @@
     </head>
 
     <body>
-    <script type="text/javascript">
-    function sliderChange(val)
-    {
-       document.getElementById('sliderStatus').innerHTML = val;
-    }
-    </script>
+    <form action="index.php" method="post">
+        <script type="text/javascript">
+        function sliderChange(val)
+        {
+        document.getElementById('sliderStatus').innerHTML = val;
+        }
+        </script>
         <?php
             include 'cnx.php';
 
@@ -24,6 +25,8 @@
             $sql2->execute();
             $sql3 = $bdd->prepare("select * from pizzas");
             $sql3->execute();
+            $sql4 = $bdd->prepare("select * from commandes");
+            $sql4->execute();
            echo"<section>";
                 echo"<table>";
                 echo"<tr>";
@@ -79,5 +82,6 @@
                 echo "<input style='width: 100%' type='submit' value='Envoyer' name='btnEnvoyer'>";
                               
         ?>
+    </form>
     </body>
 </html>
