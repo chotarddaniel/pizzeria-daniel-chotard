@@ -3,12 +3,18 @@
     <head>
     <meta charset="UTF-8">
         <title>Pizzeria</title>
-        <script type="text/javascript" src="JS/lesFonctions.js"></script>
+        <script type="text/javascript" src="JS/Fonctions.js"></script>
         <script type="text/javascript" src="JQuery/jquery-3.1.1.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../CSS/styles.css">
     </head>
 
     <body>
+    <script type="text/javascript">
+    function sliderChange(val)
+    {
+       document.getElementById('sliderStatus').innerHTML = val;
+    }
+    </script>
         <?php
             include 'cnx.php';
 
@@ -27,14 +33,14 @@
                 echo"</tr>";
                 echo"<tr>";
                     echo "<th><input type='text' name='lname' disabled></th>";
-                    echo "<th><select id=client onchange='AfficherLesClients()'>";
+                    echo "<th><select id=client '>";
                     foreach($sql->fetchAll(PDO::FETCH_ASSOC) as $ligne)
                     {  
                         echo "<option value='".$ligne['numCli']."'>".$ligne['nomCli']."</option>";
                     }
                     echo "</select></th>";
 
-                    echo "<th><select id=livreurs onchange='AfficherLesLivreurs()'>";
+                    echo "<th><select id=livreurs '>";
                     foreach($sql2->fetchAll(PDO::FETCH_ASSOC) as $ligne)
                     {  
                         echo "<option value='".$ligne['numLiv']."'>".$ligne['nomLiv']."</option>";
@@ -62,12 +68,16 @@
                                 echo"<th><p>".$ligne['nomPiz']."</p></th>";
                                 echo"<th><p>".$ligne['nbPers']."</p></th>";
                                 echo"<th><p>".$ligne['prix']."</p></th>";
-                                echo"<th><input type='range' min='1' max='100' value='0'></th>";
+                                echo"<th><input type='range' min='1' max='5' value='0' onChange='sliderChange(this.value)'><span id='sliderStatus'></span></th>";
                             }
                             
                         echo"</table>";
                     echo"</div>";
             echo"</section>";
+            echo"<section id'financement'>";
+                echo"<input class='textValue' type='text' value='10'>";
+                echo "<input style='width: 100%' type='submit' value='Envoyer' name='btnEnvoyer'>";
+                              
         ?>
     </body>
 </html>
